@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SpringHibernateMVC" default="makewar">
+	<path id="compile.classpath">
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar"></include>
+		</fileset>
+	</path>
+	
+	<target name="init">
+		<echo>Creating target directories ...</echo>
+		<mkdir dir="target/build/classes"></mkdir>
+		<mkdir dir="target/build/classes/resources"></mkdir>
+		<copy todir="target/build/classes/resources">
+			<fileset dir="src/resources"></fileset>
+		</copy>
+	</target>
+	
+	<target name="compile" depends="init">
+		<echo>Compiling Source files</echo>
+		<javac destdir="target/build/classes" debug="true" srcdir="src" includeantruntime="true" encoding="UTF-8">
+			<classpath refid="compile.classpath"></classpath>
+		</javac>
+	</target>
+	
+	<target name="makewar" depends="compile">
+		<echo>Creating WAR file</echo>
+		<war destfile="target/dist/SpringHibernateMVC.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent"></fileset>
+			<classes dir="target/build/classes"></classes>
+		</war>
+		<echo>WAR Created Successfully...</echo>
+		<echo>Cleaning target directories...</echo>
+		<delete dir="target/build" />
+		
+	</target>
+</project>
