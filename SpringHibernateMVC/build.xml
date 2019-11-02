@@ -30,7 +30,6 @@
 		</war>
 		<echo>WAR Created Successfully...</echo>
 		<echo>Cleaning target directories...</echo>
-		<delete dir="target/build" />
-		
+		<delete dir="target/build" />	
 	</target>
 </project>
