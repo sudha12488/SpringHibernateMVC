@@ -18,8 +18,43 @@
 			<classpath refid="compile.classpath"></classpath>
 		</javac>
 	</target>
-	
-	<target name="makejar" depends="compile">
+
+	<target name="junit" depends="compile">
+	        <junit printsummary="yes" haltonfailure="no" >
+	        	<classpath refid="compile.classpath"/>
+	            <test name = "com.jenkins.test.ConcatenateTest" todir="."/>
+	            	<formatter type="xml"/>
+	            	 
+	        </junit>
+	    </target>
+
+	<!--<target name="junit" depends="compile">
+
+	    <echo message="Running tests..."/>
+
+	    <junit printsummary="yes" haltonfailure="true">
+
+	    	<classpath refid="compile.classpath"/>
+	    		
+
+	       	<classpath>
+	            <pathelement location="build/classes"/>
+	            <pathelement location="build/tests"/>
+	        </classpath>     
+	      
+
+	      <batchtest todir="target/build/classes">
+	            <fileset dir="src">
+	                <include name="**/*Test*.java" />
+	            </fileset>
+	        </batchtest>
+ <test name = "com.jenkins.test.ConcatenateTest" todir="."/>
+ formatter type="xml" />
+	    </junit>
+</target>-->
+
+
+	<target name="makejar" depends="junit">
 		<echo>Creating WAR file</echo>
 		<war destfile="target/dist/JenkinsTest.jar" webxml="WebContent/WEB-INF/web.xml">
 			<fileset dir="WebContent"></fileset>
@@ -29,4 +64,5 @@
 		<echo>Cleaning target directories...</echo>
 		<delete dir="target/build" />	
 	</target>
-</project>
+
+	</project>
