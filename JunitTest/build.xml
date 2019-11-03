@@ -22,6 +22,9 @@
 	<target name="junit" depends="compile">
 	        <junit printsummary="yes" haltonfailure="no" >
 	        	<classpath refid="compile.classpath"/>
+	        	<classpath>
+	        		 <pathelement location="build/classes"/>
+	        	</classpath> 
 	            <test name = "com.jenkins.test.ConcatenateTest" todir="."/>
 	            	<formatter type="xml"/>
 	            	 
